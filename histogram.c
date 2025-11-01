@@ -5,7 +5,7 @@
 
 #define HIST_HEIGHT 5
 
-char** create_histogram(int *data, int columns, int total)
+char** create_histogram(int *data, int columns)
 {
     // Find max value in data, use for scaling histogram later
     int max = 0;
@@ -42,4 +42,12 @@ void display_histogram(char** histogram, int columns)
         }
         printf("\n");
     }
+}
+
+void free_histogram(char** histogram, int columns)
+{
+    for (int i = 0; i < columns; i++)
+        free(histogram[i]);
+
+    free(histogram);
 }

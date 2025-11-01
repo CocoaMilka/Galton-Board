@@ -52,8 +52,11 @@ int main()
     //for (int i = 0; i < numBins; i++)
     //    printf("%d\t", board[i]);
 
-    char** histogram = create_histogram(board, numBins, numBeads);
+    char** histogram = create_histogram(board, numBins);
     display_histogram(histogram, numBins);
+
+    free(board);
+    free_histogram(histogram, numBins);
 
     return 0;
 }
