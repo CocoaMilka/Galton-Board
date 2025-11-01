@@ -49,10 +49,9 @@ int main()
     }
     
     // Print out values of bins
-    for (int i = 0; i < numBins; i++)
-        printf("%d\t", board[i]);
+    //for (int i = 0; i < numBins; i++)
+    //    printf("%d\t", board[i]);
 
-    //
     char** histogram = create_histogram(board, numBins, numBeads);
     display_histogram(histogram, numBins);
 

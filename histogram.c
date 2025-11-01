@@ -3,35 +3,42 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define HIST_HEIGHT 10
+#define HIST_HEIGHT 5
 
 char** create_histogram(int *data, int columns, int total)
 {
+    // Find max value in data, use for scaling histogram later
+    int max = 0;
+    for (int i = 0; i < columns; i++)
+        if (data[i] > max)
+            max = data[i];
+
     // Create the histogram in memory
     char** histogram = calloc(columns, sizeof(char*));
     if (histogram == NULL) { printf("Failed to allocate histogram!"); exit(0); }
 
     for (int i = 0; i < columns; i++)
     {
-        //histogram[i] = (char*) calloc(HIST_HEIGHT, sizeof(char));
-        histogram[i] = malloc(HIST_HEIGHT * sizeof(char));
+        histogram[i] = (char*) calloc(HIST_HEIGHT, sizeof(char));
         if (histogram[i] == NULL) { printf("Failed to allocate histogram bins!"); exit(0); }
-        memset(histogram[i], 'x', HIST_HEIGHT);
-    }
 
-    // Populate with data, each bin will be a percentage represented with bars
+        // Data should have same length!! if not you're doing something wrong!!
+        float percentage = (float)data[i] / max;
+        int barHeight = (int)HIST_HEIGHT * percentage;
+        for (int j = 0; j < barHeight; j++)
+            histogram[i][j] = 'x';
+    }
 
     return histogram;
 }
 
 void display_histogram(char** histogram, int columns)
 {
-    printf("\nPRINTING HISTOGRAM \n");
-    for (int i = 0; i < columns; i++)
+    for (int i = HIST_HEIGHT - 1; i > 0; i--)
     {
-        for (int j = 0; j < HIST_HEIGHT; j++)
+        for (int j = 0; j < columns; j++)
         {
-            printf("%c\t", histogram[i][j]);
+            printf("%c\t", histogram[j][i]);
         }
         printf("\n");
     }
