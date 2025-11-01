@@ -1,1 +1,5 @@
 out
+*.o
+
+galtonboard
+galtonboard_debug
