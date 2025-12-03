@@ -24,20 +24,16 @@ int main(int argc, char* argv[])
 
 	// Allocate memory for bins (from user input), should init with 0
 	int *board = (int *)calloc(numBins, sizeof(int));
-	if (board == NULL)
-	{
-		printf("Allocation failed!");
-		exit(0);
-	}
+	if (board == NULL) { printf("Allocation failed!"); exit(0); }
 
 	// Simulate board
 	// Example: If there are 4 bins, then there will be 1 + 2 + 3 pegs (3 levels)
 	// For the case n bins, there will be 1 + 2 + ... + n - 1 pegs (n - 1 levels)
 	//			.
-	//		  .   .
+	//		    .	    .
 	//		.	.	.
 	//	|	|	|	|	|
-	//	  1   2   3   4
+	//	    1	    2	    3	    4
 	// This means, if we start with 1/2 number of bins, then for each level:
 	//	+ .5 if bead falls right
 	//	- .5 if bead falls left
@@ -57,8 +53,8 @@ int main(int argc, char* argv[])
 	}
 	
 	// Print out values of bins
-	//for (int i = 0; i < numBins; i++)
-	//	  printf("%d\t", board[i]);
+	for (int i = 0; i < numBins; i++)
+		  printf("%d\t", board[i]);
 
 	char** histogram = create_histogram(board, numBins);
 	display_histogram(histogram, numBins);
