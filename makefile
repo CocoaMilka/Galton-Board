@@ -1,11 +1,20 @@
-CC=gcc
-binaries=galtonboard galtonboard_debug
+CC=mpicc
+BINARIES=galtonboard_parallel galtonboard_parallel_debug
+OBJS=main.o histogram.o
 
-make: main.c histogram.c
-	$(CC) -o galtonboard main.c histogram.c
+all: galtonboard_parallel
 
-debug: main.c histogram.c
-	$(CC) -Wall -o galtonboard_debug main.c histogram.c
+galtonboard_parallel: $(OBJS)
+	$(CC) -o galtonboard_parallel $(OBJS)
+
+galtonboard_parallel_debug: $(OBJS)
+	$(CC) -Wall -o galtonboard_parallel_debug $(OBJS)
+
+main.o: main.c 
+	$(CC) -c main.c
+
+histogram.o: histogram.c histogram.h
+	$(CC) -c histogram.c
 
 clean:
 	rm -f $(binaries) *.o

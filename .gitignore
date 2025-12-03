@@ -4,5 +4,5 @@ build/
 out
 *.o
 
-galtonboard
-galtonboard_debug
+galtonboard_parallel
+galtonboard_parallel_debug
