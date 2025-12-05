@@ -34,7 +34,7 @@ char** create_histogram(int *data, int columns)
 void display_histogram(char** histogram, int columns)
 {
 	printf("\n");
-	for (int i = HIST_HEIGHT - 1; i > 0; i--)
+	for (int i = HIST_HEIGHT - 1; i >= 0; i--)
 	{
         	for (int j = 0; j < columns; j++)
 		{
