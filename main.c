@@ -56,8 +56,13 @@ int main(int argc, char* argv[])
 		for (int i = 0; i < numBins; i++)
 			  printf("%d\t", board[i]);
 
+		// Print Histogram
+		char** histogram = create_histogram(board, numBins);
+		display_histogram(histogram, numBins);
+	
 		free(board);
 		free(tmp_board);
+		free_histogram(histogram, numBins);
 	} 
 	else // Sub processors to simulate boards with their portion of beads and return
 	{ 
